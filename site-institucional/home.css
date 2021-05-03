@@ -1,0 +1,82 @@
+@font-face {
+	font-family: Bold;
+	src: url(Font/Beaufort\ W01\ Bold.ttf)
+}
+
+body{
+
+    margin: 0;
+
+}
+
+.box-navbar{
+
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    background: rgba(14, 135, 235, 0.4);
+    position: fixed;
+
+}
+
+.container-respiro {
+
+    max-width: 90%;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+
+  }
+
+.container-respiro img{
+
+    padding-top: 20px;
+    height: 60px;
+    float: left;
+
+}
+
+.navbar {
+
+    display: flex;
+    float: right;
+    list-style: none;
+    align-items: center;
+    padding: 20px 0;
+    vertical-align: middle;
+
+  }
+  
+.navbar li {
+
+    display: inline-block;
+
+}
+  
+.navbar li a {
+
+    color: #fffbd4;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: Bold;
+    font-size: 20px;
+
+}
+
+.navbar li a:hover{
+
+    color: #fffbd4;
+    background-color: rgba(14, 135, 235, 0.6);
+
+}
+
+.box-img{
+
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("img/lol.jpg") no-repeat;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+
+}
