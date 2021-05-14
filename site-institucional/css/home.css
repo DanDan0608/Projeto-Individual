@@ -1,12 +1,12 @@
 @font-face {
 	font-family: Bold;
-	src: url(Font/Beaufort\ W01\ Bold.ttf)
+	src: url(../Font/Beaufort\ W01\ Bold.ttf)
 }
 
 body{
 
     margin: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/texture-rote.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/img-home/texture-rote.jpg);
     background-size: cover;
 
 }
@@ -68,22 +68,22 @@ body{
 
 .choose{
 
-    background-color: rgba(255, 255, 255, 0.6);
-    color: rgba(2, 43, 228, 0.9);
+    border-bottom: 5px solid rgba(2, 43, 228, 0.9);
+    color: cornflowerblue;
 
 }
 
 .navbar li a:hover{
 
-    color: rgba(2, 43, 228, 0.4);
-    background-color: rgba(255, 255, 255, 0.6);
-    transition: 0.3s;
+    color: cornflowerblue;
+    border-bottom: 5px solid rgba(2, 43, 228, 0.9);
+    transition: 0.5s;
 
 }
 
 .box-banner{
 
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/lol.jpg") no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../img/img-home/lol.jpg") no-repeat;
     /* box-shadow: 20px 20px 20px black; */
     border-radius: 10px;
     width: 100%;
