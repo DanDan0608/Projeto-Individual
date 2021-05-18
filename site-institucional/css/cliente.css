@@ -1,0 +1,215 @@
+@font-face {
+	font-family: Bold;
+	src: url(../Font/Beaufort\ W01\ Bold.ttf)
+}
+
+body{
+
+    border: none;
+    margin: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/img-cliente/backgroud.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.navigation{
+
+    position: fixed;
+    width: 60px;
+    height: 100%;
+    background: #3e0748;
+    transition: 0.5s;
+    overflow: hidden;
+    z-index: 10;
+
+}
+
+.navigation:hover, .navigation.active{
+
+    width: 300px;
+
+}
+
+.navigation ul{
+
+    position: absolute; 
+    width: 100%;
+    color: #fff;
+    padding: 0;
+
+}
+
+.navigation ul li{
+
+    position: relative;
+    width: 100%;
+    list-style: none;
+
+}
+
+.navigation ul li a{
+
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.navigation ul li a .icon{
+
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.navigation ul li a .icon .img{
+
+    font-size: 24px;
+
+}
+
+.navigation ul li a .title{
+
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+
+}
+
+.navigation ul li:hover{
+
+    background: #ea1d63;
+
+}
+
+.toggle{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: #330758;
+    cursor: pointer;
+
+}
+
+.toggle.active{
+
+    background: #ea1d63;
+
+}
+
+.toggle:before{
+
+    content: url(../img/img-cliente/bars.png);
+    position: absolute;
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+.toggle.active:before{
+
+    margin-top: 10px;
+    content: url(../img/img-cliente/Letter_X.png);
+
+}
+
+@media (max-width: 767px) {
+
+    .navigation{
+
+        left: -60px;
+
+    }
+
+    .navigation.active{
+
+        left: 0px;
+        width: 100%;
+        z-index: 0;
+
+    }
+    
+}
+
+.intructions{
+
+    font-size: 30px;
+    font-family: Bold;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/img-cliente/image.png);;
+
+    text-align: center;
+    padding: 0 0 100px 0 ;
+}
+
+.intructions .text{
+
+    text-align: justify;
+    margin: 0 30px;
+
+}
+
+.intructions button{
+
+    margin-top: 100px;
+    background-color: #00ffff;
+    width: 200px;
+    height: 80px;
+    font-size: 30px;
+    box-shadow: 9px 8px 42px 4px aqua;
+
+}
+
+.box-rift{
+
+    align-items: center;
+    text-align: center;
+    position: relative;
+
+}
+
+.box-rift img{
+
+    border-radius: 50px;
+
+}
+
+.box-rift h1{
+
+    color: white;
+    text-transform: uppercase;
+
+}
+
+.container-respiro {
+
+    max-width: 79%;
+    height: 100%;
+    margin: 120px auto;
+
+  }
+
+  .navigation{
+
+    top: 0;
+    left: 0;
+
+  }
