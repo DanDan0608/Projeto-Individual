@@ -1,0 +1,54 @@
+.box-route-top{
+
+    height: 650px;
+    width: 1000px;
+    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/img-cliente/top.jpg');
+    background-position: center;
+    text-align: center;
+    
+}
+
+.box-route-top .title-players-top{
+    
+    font-size: 50px;
+    color: white;
+    text-shadow: blueviolet 4px 1px;
+    
+}
+
+.box-sel-options-top{
+    
+    height: 540px;
+    border-left: 2px solid blueviolet;
+    border-right: 2px solid blueviolet;
+    border-bottom: 2px solid blueviolet;
+
+}
+
+.box-route-top select{
+
+    width: 1000px;
+    height: 30px;
+    margin-top: 10px;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    outline: 2px solid blueviolet;
+
+    color: white;
+    font-size: 20px;
+    padding-left: 39% !important;
+    width: 100%;
+
+}
+
+.box-route-top select option{
+
+    background: rgb(99, 67, 129);
+
+}
+
+.box-route-top .option-jogadores:hover{
+
+    background: rgb(143, 24, 255);
+
+}
