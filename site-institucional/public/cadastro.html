@@ -22,7 +22,7 @@
 
             <ul class="navbar">
                 <li><a href="index.html" class="n-choose">INICIO</a></li>
-                <li><a href="#servicos" class="n-choose">CONTATO</a></li>
+                <li><a href="contato.html" class="n-choose">CONTATO</a></li>
                 <li><a href="cadastro.html" class="choose">CADASTRO</a></li>
                 <li><a href="login.html" class="n-choose">LOGIN</a></li>
             </ul>
@@ -111,6 +111,8 @@
 
     var set_backgroud = `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))`;
 
+    var rotas = ['Top Laner', `Mid Laner`,`Jungler`, `Ad Carry`, `Suporte`];
+
     function topp(){
 
         top_lane.style.background = set_backgroud;
@@ -119,7 +121,7 @@
         adc_lane.style.background = ``;
         sup_lane.style.background = ``;
 
-        input_rota.value = `Top Laner`;
+        input_rota.value = rotas[0];
     }
 
     function mid(){
@@ -130,7 +132,7 @@
         adc_lane.style.background = ``;
         sup_lane.style.background = ``;
 
-        input_rota.value = `Mid Laner`;
+        input_rota.value = rotas[1];
 
     }
 
@@ -142,7 +144,7 @@
         adc_lane.style.background = ``;
         sup_lane.style.background = ``;
 
-        input_rota.value = `Jungler`;
+        input_rota.value = rotas[2];
 
     }
 
@@ -154,7 +156,7 @@
         top_lane.style.background = ``;
         sup_lane.style.background = ``;
 
-        input_rota.value = `Ad Carry`;
+        input_rota.value = rotas[3];
 
     }
 
@@ -166,7 +168,7 @@
         adc_lane.style.background = ``;
         top_lane.style.background = ``;
 
-        input_rota.value = `Suporte`;
+        input_rota.value = rotas[4];
 
     }
 
