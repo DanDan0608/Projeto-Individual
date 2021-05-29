@@ -45,8 +45,8 @@
         <form id="form_login" class="field-bottom" method="post" onsubmit="return entrar()">
 
             <div class="field">
-            Digite seu email: <br>
-            <input name="email" placeholder="Ex: xxxx@gmail.com" class="input" autofocus>
+            Digite seu nick: <br>
+            <input name="nick" placeholder="Ex: xxxx@gmail.com" class="input" autofocus>
             </div>
 
             
@@ -62,7 +62,7 @@
 
         </form>
 
-        <div id="div_erro" class="div-erro">
+        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
             Erro no cadastro
         </div>
 
@@ -90,8 +90,9 @@ function entrar() {
 
                 resposta.json().then(json => {
 
-                    sessionStorage.login_usuario_meuapp = json.login;
-                    sessionStorage.nome_usuario_meuapp = json.nome;
+                    sessionStorage.nick_usuario_meuapp = json.nickname_lol;
+                    sessionStorage.senha_usuario_meuapp = json.senha_usuario;
+                    sessionStorage.fk_rota_meuapp = json.fk_rota;
 
                     window.location.href = 'cliente.html';
                 });
