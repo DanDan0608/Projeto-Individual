@@ -20,22 +20,6 @@
 
 }
 
-.box-perfil .img_user{
-
-    float: left;
-    margin: 30px 20px 0 35px;
-    
-}
-
-.img_user .user{
-    
-    height: 140px;
-    background-color: rgb(242, 248, 255);
-    border-radius: 100px;
-    cursor: pointer;
-
-}
-
 .name_user{
 
     height: 120px;
@@ -49,6 +33,7 @@
     padding-top: 30px;
     border: black 5px solid;
     border-radius: 10px;
+    margin-left: 110px;
 
 }
 

@@ -242,7 +242,7 @@ body{
 
 .container-respiro {
 
-    max-width: 79%;
+    max-width: 72%;
     height: 100%;
     margin: 120px auto;
 
@@ -252,5 +252,13 @@ body{
 
     top: 0;
     left: 0;
+
+}
+
+.canva{
+
+    width: 550px;
+    height: 550px;
+    margin: 2% 0 5% 25%;
 
 }

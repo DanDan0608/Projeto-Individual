@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="css/box-route-bot.css">
     <link rel="stylesheet" href="css/box-route-top.css">
     <link rel="stylesheet" href="css/box-route-jg.css">
+    <link rel="stylesheet" href="css/box-route-all.css">
+    <link rel="stylesheet" href="css/cliente-perfil.css">
+    <link rel="stylesheet" href="css/box-perfil.css">
     <link rel="stylesheet" href="css/cliente.css">
+
+    <script type="text/javascript" src="javascript/validar_login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Cliente</title>
 
@@ -41,7 +47,7 @@
                 </a>
             </li>
             <li class="down">
-                <a href="#">
+                <a onclick="logoff()">
                     <span class="icon"><img src="img/img-cliente/log_out.png" alt=""></i></span>
                     <span class="title">Sair</span>
                 </a>
@@ -121,10 +127,10 @@
                     <area alt="Jg2" title="Jg2" href="#" onclick="jg()"
                     coords="571,77,607,70,662,113,560,176,293,357,232,331,202,328,222,284,247,247,219,209,240,150,289,115,351,87,448,79,570,77" shape="poly">
                     
-                    <area class="iborder000000 icolor00ffff"  alt="base1" title="base1" href="#" onclick="all()" 
+                    <area class="iborder000000 icolor00ffff"  alt="base1" title="base1" href="#" onclick="todos()" 
                     coords="76,392,92,392,190,397,245,412,256,418,268,417,295,434,287,445,306,472,312,495,314,516,316,534,325,537,321,574,304,585,290,591,141,588,119,610,4,614,1,559,38,526" shape="poly">
                     
-                    <area class="iborder000000 icolor00ffff" alt="base2" title="base2" href="#" onclick="all()"
+                    <area class="iborder000000 icolor00ffff" alt="base2" title="base2" href="#" onclick="todos()"
                     coords="870,21,910,139,899,153,859,153,847,147,810,139,789,137,765,131,751,133,714,119,713,101,687,60,676,56,671,40,676,21" shape="poly">
                 
                 </map>
@@ -137,13 +143,7 @@
 
             <span class="title-players-mid">JOGADORES DO MID</span><br>
 
-            
-            <select class="sel_jogadores_mid" id="sel_jogadores_mid">
-                
-                
-            </select>
-
-            <div class="box-sel-options-mid"></div>
+            <div id="jogadores_mid"></div>
 
         </div>
 
@@ -152,14 +152,7 @@
 
             <span class="title-players-bot">JOGADORES DO BOT</span><br>
 
-            
-            <select class="sel_jogadores_bot" id="sel_jogadores_bot">
-        
-
-                
-            </select>
-
-            <div class="box-sel-options-bot"></div>
+            <div id="jogadores_bot"></div>
 
         </div>
 
@@ -168,36 +161,35 @@
 
             <span class="title-players-top">JOGADORES DO TOP</span><br>
 
+            <div id="jogadores_top"></div>
             
-            <select class="sel_jogadores_top" id="sel_jogadores_top">
-                
-
-                
-            </select>
-
-            <div class="box-sel-options-top"></div>
+            </div>
 
         </div>
 
-        
         <div class="box-route-jg" id="route_jg" style="display: none;">
 
             <span class="title-players-jg">JOGADORES DA JUNGLE</span><br>
 
-            
-            <select class="sel_jogadores_jg" id="sel_jogadores_jg">
-                
+            <div id="jogadores_jg"></div>
 
-                
-            </select>
+        </div>
 
-            <div class="box-sel-options-jg"></div>
+        <div class="box-route-all" id="route_all" style="display: none;">
+
+            <span class="title-players-all">TODOS OS JOGADORES</span><br>
+
+            <div class="canva">
+
+                <canvas id="myChart" ></canvas>
+
+            </div>
+
+            <div id="jogadores_all"></div>
 
         </div>
 
     </div>
-
-</div>
 
 </body>
 
@@ -218,38 +210,263 @@
     }
 </script>
 
-
-
 <script>
 
-function buscarRota(fk_rota) {
+    var rota_selecionada = 0;
+
+    // function grafico(){
+
+    //     console.log('Executei grafico');
+
+    //     fetch(`/usuarios/grafico/`, { cache: 'no-store' }).then(function (response) {
+
+    //         if (response.ok) {
+
+    //         }
+            
+    //     });
+
+    function buscarRota(fk_rota) {
+        
+        var src_img = ``;
+        var nome_usuario = ``;
+        var msg = ``;
+        var top = 0
+        var mid = 0;
+        var jg = 0;
+        var adc = 0;
+        var sup = 0;
 
         console.log("executei buscarRota")
+
+        // Buscando rota
 
         fetch(`/usuarios/buscar/${fk_rota}`, { cache: 'no-store' }).then(function (response) {
 
             if (response.ok) {
-                
+
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    
+
+                    // Vereficando se há registros 
+
+                    if(resposta.length == 0){
+
+                        msg = `<div class="box-perfil">
+
+                        <div class="name_user" id="usuario_nome">Sem usuários</div>
+
+                        <div id="box_info" class="box-info">
+
+                            <div class="lane">
+
+                                <div class="text-for-lane">Rota Favorita:</div>
+                                    
+                                <img src="" alt="" id="img_rota">
+                                    
+                            </div>
+
+                            <div class="line"></div>
+
+                            <div class="reports">
+
+                            <div class="text-for-reports">Ocorrências:</div>
+
+                        </div>`;
+
+                        if(rota_selecionada == 1){
+
+                                jogadores_top.innerHTML += msg;
+
+                            }else if(rota_selecionada == 2){
+
+                                jogadores_mid.innerHTML += msg;
+
+                            }else if(rota_selecionada == 3){
+
+                                jogadores_jg.innerHTML += msg;
+
+                            }else if(rota_selecionada == 4){
+
+                                jogadores_bot.innerHTML += msg;
+
+                            }else{
+
+                                jogadores_all.innerHTML += msg;
+
+                            }
+                    }else{
+
+                    // Limpando as div
+
+                    jogadores_top.innerHTML = ``;
+                    jogadores_mid.innerHTML = ``;
+                    jogadores_jg.innerHTML = ``;
+                    jogadores_bot.innerHTML = ``;
+                    jogadores_all.innerHTML = ``;
+
+                    // for para percorrer todas as respostas
+
                     for (i = 0; i < resposta.length; i++) {
-                        var registro = resposta[i];
 
-                        if(registro.fk_rota == 1){
-                        
-                            sel_jogadores_top.innerHTML += `<option value="${vetorJogadores[i].rotaFavorita}">${vetorJogadores[i].rotaFavorita}</option>`;
+                        console.log(`${resposta.length}`)
 
+                        // no indice par, contém o nome e no impar, contém a fk_rota
+
+                        if(i % 2 == 0){
+
+                            nome_usuario = resposta[i];
+
+                            console.log(`nome recebico ${resposta[i]}`)
+                       
+                        }if(i % 2 != 0){
+
+                            if(resposta[i] == undefined){
+
+                            console.log('Ta errado irmao');
+
+                            }else if(Number(resposta[i]) == 1){
+
+                            src_img = `img/img-cadastro/top-icon.png`;
+                            top++;
+
+                            }else if(Number(resposta[i]) == 2){
+
+                            src_img =  `img/img-cadastro/mid-icon.png`;
+                            mid++;
+
+                            }else if(Number(resposta[i]) == 3){
+
+                            src_img = `img/img-cadastro/jg-icon.png`;
+                            jg++;
+
+                            }else if(Number(resposta[i]) == 4){
+
+                            src_img = `img/img-cadastro/bot-icon.png`;
+                            adc++;
+
+                            }else if(Number(resposta[i]) == 5){
+
+                            src_img = `img/img-cadastro/sup-icon.png`;
+                            sup++;
+
+                            }
+
+                            console.log(`img recebida ${src_img}`);
+
+                            // criando os perfil dos usuarios com base no nome e rota
+
+                            msg = `<div class="box-perfil">
+
+                            <div class="name_user" id="usuario_nome">${nome_usuario}</div>
+
+                            <div id="box_info" class="box-info">
+
+                                <div class="lane">
+
+                                    <div class="text-for-lane">Rota Favorita:</div>
+                                    
+                                    <img src="${src_img}" alt="" id="img_rota">
+                                    
+                                </div>
+
+                                <div class="line"></div>
+
+                                <div class="reports">
+
+                                    <div class="text-for-reports">Ocorrências:</div>
+
+                            </div>`;
+
+                            // verefica em que rota tem que inserir
+
+                            if(rota_selecionada == 1){
+
+                                jogadores_top.innerHTML += msg;
+
+                            }else if(rota_selecionada == 2){
+
+                                jogadores_mid.innerHTML += msg;
+
+                            }else if(rota_selecionada == 3){
+
+                                jogadores_jg.innerHTML += msg;
+
+                            }else if(rota_selecionada == 4){
+
+                                jogadores_bot.innerHTML += msg;
+
+                            }else{
+
+                                jogadores_all.innerHTML += msg;
+
+                            }
                         }
-
                     }
-                    console.log(JSON.stringify(dados));
-                    div_aguarde.style.display = 'none';
-                    plotarGrafico(dados, idcaminhao);
 
-                });
+                    console.log(`valor top: ${top}, valor mid: ${mid}\n
+                    valor jg: ${jg}, valor adc: ${adc}, valor sup: ${sup}`)
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['TopLane', 'MidLane', 'Jungler', 'AdCarry', 'Suporte'],
+                                datasets: [{
+                                    data: [top, mid, jg, adc, sup],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.6)',
+                                        'rgba(54, 162, 235, 0.6)',
+                                        'rgba(255, 206, 86, 0.6)',
+                                        'rgba(75, 192, 192, 0.6)',
+                                        'rgba(153, 102, 255, 0.6)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)'
+                                    ],
+                                    hoverBackgroundColor:[
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)'
+                                    ],
+                                    hoverBorderWidth: 5,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        color: 'white',
+                                        font: {
+                                            size: 20,
+                                            family:'Helvetica'
+                                        }
+                                    }
+                                }
+                            },
+
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
             } else {
+
                 console.error('Nenhum dado encontrado ou erro na API');
+
             }
         })
             .catch(function (error) {
@@ -265,13 +482,39 @@ function buscarRota(fk_rota) {
 
     }
 
+    function topp(){
+
+        route_top.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 1;
+
+        buscarRota(1);
+
+    }
+
     function mid() {
 
         route_mid.style.display = `block`;
         back_arrow.style.display = `block`;
         box_rift.style.display = 'none';
 
+        rota_selecionada = 2
+
         buscarRota(2);
+
+    }
+
+    function jg(){
+
+        route_jg.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 3;
+        
+        buscarRota(3);
 
     }
 
@@ -281,27 +524,22 @@ function buscarRota(fk_rota) {
         back_arrow.style.display = `block`;
         box_rift.style.display = 'none';
 
+        rota_selecionada = 4
+
         buscarRota(9);
 
     }
 
-    function jg(){
+    function todos(){
 
-        route_jg.style.display = `block`;
-        back_arrow.style.display = `block`;
-        box_rift.style.display = 'none';
-        
-        buscarRota(3);
-
-    }
-
-    function topp(){
-
-        route_top.style.display = `block`;
+        route_all.style.display = `block`;
         back_arrow.style.display = `block`;
         box_rift.style.display = 'none';
 
-        buscarRota(1);
+        rota_selecionada = 5;
+
+        buscarRota(15);
+        grafico();
 
     }
 
@@ -311,6 +549,7 @@ function buscarRota(fk_rota) {
         route_mid.style.display = `none`;
         route_jg.style.display = `none`;
         route_top.style.display = `none`;
+        route_all.style.display = `none`;
         back_arrow.style.display = `none`;
 
         box_rift.style.display = `block`;

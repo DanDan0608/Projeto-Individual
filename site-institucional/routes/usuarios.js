@@ -96,6 +96,8 @@ router.get('/sair/:nick', function(req, res, next) {
 	res.send(`Sessão do usuário ${nick} finalizada com sucesso!`);
 });
 
+var jogadores = [];
+
 /* Recuperar todos os usuários */
 router.get('/buscar/:fk_rota', function(req, res, next) {
 	
@@ -103,7 +105,11 @@ router.get('/buscar/:fk_rota', function(req, res, next) {
 
 	let instrucaoSql = "";
 
-	if(fk_rota == 9){
+	if(fk_rota == 15){
+
+		instrucaoSql = `select * from usuarios`;
+
+	}else if(fk_rota == 9){
 
 		// abaixo, escreva o select de dados para o Workbench
 		instrucaoSql = `select * from usuarios where fk_rota = 4 or fk_rota = 5`;
@@ -117,10 +123,28 @@ router.get('/buscar/:fk_rota', function(req, res, next) {
 
 	console.log(instrucaoSql);
 
-	sequelize.query(instrucaoSql, { model: Usuario })
-	.then(resultado => {
+	sequelize.query(instrucaoSql, {
+		model: Usuario 
+	}).then(resultado => {
+
 		console.log(`Encontrados: ${resultado.length}`);
-		res.send(resultado);
+
+		jogadores = [];
+
+		for(var cont = 0; cont < resultado.length ; cont++){
+
+		console.log(`enviando ${resultado[cont].dataValues.nickname_lol}`);
+		console.log(`enviando ${resultado[cont].dataValues.fk_rota}`);
+
+		jogadores.push(resultado[cont].dataValues.nickname_lol);
+		jogadores.push(resultado[cont].dataValues.fk_rota);
+
+		}
+	
+	res.json(jogadores);
+
+	console.log(`res.json = ${jogadores}`);
+
 	}).catch(erro => {
 		console.error(erro);
 		res.status(500).send(erro.message);

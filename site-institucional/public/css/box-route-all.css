@@ -1,16 +1,16 @@
-.box-route-jg{
+.box-route-all{
 
     height: 650px;
     width: 1000px;
-    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/img-cliente/jg.jpg');
+    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/img-cliente/img-all.jpg_large');
     background-position: center;
     background-size: cover;
     text-align: center;
     overflow-y: scroll;
-
+    
 }
 
-.box-route-jg .title-players-jg{
+.box-route-all .title-players-all{
     
     font-size: 50px;
     color: white;
