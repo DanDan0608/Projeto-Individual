@@ -92,8 +92,29 @@
     height: 259px;
     text-align: center;
     float: left;
+    overflow-y: scroll;
 
 }
+
+.reports::-webkit-scrollbar-track {
+
+    background: rgba(35, 114, 136, 0.8);        /* color of the tracking area */
+      
+  }
+  
+  .reports::-webkit-scrollbar-thumb {
+  
+    background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 1px solid white;  /* creates padding around scroll thumb */
+  
+  }
+  
+  .reports::-webkit-scrollbar {
+  
+    width: 10px;               /* width of the entire scrollbar */
+  
+  }
 
 .reports .text-for-reports{
 
@@ -101,6 +122,13 @@
     text-shadow: 2px 3px black;
     font-size: 35px;    
     padding-top: 20px;
+    font-family: Bold;
+
+}
+
+.reports .desc_ocorrencia{
+
+    color: white;
     font-family: Bold;
 
 }

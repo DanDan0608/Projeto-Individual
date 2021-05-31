@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="cliente-ocorrencias.html">
                     <span class="icon"><img src="img/img-cliente/setting.png" alt=""></i></span>
                     <span class="title">Reportar um jogador</span>
                 </a>
@@ -181,7 +181,7 @@
 
             <div class="canva">
 
-                <canvas id="myChart" ></canvas>
+                <canvas id="myChart"></canvas>
 
             </div>
 
@@ -213,6 +213,11 @@
 <script>
 
     var rota_selecionada = 0;
+    var qtd_top = 0
+    var qtd_mid = 0;
+    var qtd_jg = 0;
+    var qtd_adc = 0;
+    var qtd_sup = 0;
 
     // function grafico(){
 
@@ -228,14 +233,13 @@
 
     function buscarRota(fk_rota) {
         
+        var vereficar0 = 0;
+        var vereficar1 = 1;
+        var vereficar2 = 2;
+        var ocorrencia = '';
         var src_img = ``;
         var nome_usuario = ``;
         var msg = ``;
-        var top = 0
-        var mid = 0;
-        var jg = 0;
-        var adc = 0;
-        var sup = 0;
 
         console.log("executei buscarRota")
 
@@ -244,7 +248,7 @@
         fetch(`/usuarios/buscar/${fk_rota}`, { cache: 'no-store' }).then(function (response) {
 
             if (response.ok) {
-
+                
                 response.json().then(function (resposta) {
 
                     // Vereficando se há registros 
@@ -270,6 +274,8 @@
                             <div class="reports">
 
                             <div class="text-for-reports">Ocorrências:</div>
+
+                            <div class="desc_ocorrencia"></div>
 
                         </div>`;
 
@@ -303,57 +309,79 @@
                     jogadores_jg.innerHTML = ``;
                     jogadores_bot.innerHTML = ``;
                     jogadores_all.innerHTML = ``;
+                    qtd_top = 0;
+                    qtd_mid = 0;
+                    qtd_jg = 0;
+                    qtd_adc = 0;
+                    qtd_sup = 0;
 
                     // for para percorrer todas as respostas
 
-                    for (i = 0; i < resposta.length; i++) {
+                    for (i = 0; i < resposta.length; i = i + 3) {
 
-                        console.log(`${resposta.length}`)
+                        console.log(`valores: ${resposta.length}`)
 
                         // no indice par, contém o nome e no impar, contém a fk_rota
 
-                        if(i % 2 == 0){
+                        for(cont = i; cont < (i+3); cont++){
 
-                            nome_usuario = resposta[i];
+                        if(cont == vereficar0){
 
-                            console.log(`nome recebico ${resposta[i]}`)
+                            nome_usuario = resposta[cont];
+
+                            console.log(`nome recebico ${nome_usuario}`);
+
+                            vereficar0 = vereficar0 + 3;
                        
-                        }if(i % 2 != 0){
+                        } if( cont == vereficar1){
 
-                            if(resposta[i] == undefined){
+                            if(resposta[cont] == undefined){
 
                             console.log('Ta errado irmao');
 
-                            }else if(Number(resposta[i]) == 1){
+                            }else if(Number(resposta[cont]) == 1){
 
                             src_img = `img/img-cadastro/top-icon.png`;
-                            top++;
+                            qtd_top++;
 
-                            }else if(Number(resposta[i]) == 2){
+                            }else if(Number(resposta[cont]) == 2){
 
                             src_img =  `img/img-cadastro/mid-icon.png`;
-                            mid++;
+                            qtd_mid++;
 
-                            }else if(Number(resposta[i]) == 3){
+                            }else if(Number(resposta[cont]) == 3){
 
                             src_img = `img/img-cadastro/jg-icon.png`;
-                            jg++;
+                            qtd_jg++;
 
-                            }else if(Number(resposta[i]) == 4){
+                            }else if(Number(resposta[cont]) == 4){
 
                             src_img = `img/img-cadastro/bot-icon.png`;
-                            adc++;
+                            qtd_adc++;
 
-                            }else if(Number(resposta[i]) == 5){
+                            }else if(Number(resposta[cont]) == 5){
 
                             src_img = `img/img-cadastro/sup-icon.png`;
-                            sup++;
+                            qtd_sup++;
 
                             }
 
                             console.log(`img recebida ${src_img}`);
 
-                            // criando os perfil dos usuarios com base no nome e rota
+                            vereficar1 = vereficar1 + 3;
+
+                        }else if( cont == vereficar2){
+                            
+                            ocorrencia = resposta[cont];
+
+                            console.log(`Ocorrencia recebida ${ocorrencia}`);
+
+                            vereficar2 = vereficar2 + 3;
+
+                            }
+                        }
+
+                        // criando os perfil dos usuarios com base no nome, rota e na ocorrencias
 
                             msg = `<div class="box-perfil">
 
@@ -374,6 +402,8 @@
                                 <div class="reports">
 
                                     <div class="text-for-reports">Ocorrências:</div>
+
+                                    <div class="desc_ocorrencia">${ocorrencia}</div>
 
                             </div>`;
 
@@ -400,66 +430,55 @@
                                 jogadores_all.innerHTML += msg;
 
                             }
-                        }
+
+                    }
+                    if(rota_selecionada == 5){
+
+                        var dados = {
+                                labels: ['TopLane', 'MidLane', 'Jungler', 'AdCarry', 'Suporte'],
+
+                            datasets: [{
+
+                            data: [qtd_top, qtd_mid, qtd_jg, qtd_adc, qtd_sup],
+
+                            backgroundColor: [
+
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)'
+
+                            ],
+                            borderColor: [
+
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+
+                            ],
+                             hoverBackgroundColor:[
+
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+
+                            ],
+
+                            hoverBorderWidth: 5,
+
+                            borderWidth: 1
+
+                        }]
                     }
 
-                    console.log(`valor top: ${top}, valor mid: ${mid}\n
-                    valor jg: ${jg}, valor adc: ${adc}, valor sup: ${sup}`)
+                    plotarGrafico(dados)
 
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: ['TopLane', 'MidLane', 'Jungler', 'AdCarry', 'Suporte'],
-                                datasets: [{
-                                    data: [top, mid, jg, adc, sup],
-                                    backgroundColor: [
-                                        'rgba(255, 99, 132, 0.6)',
-                                        'rgba(54, 162, 235, 0.6)',
-                                        'rgba(255, 206, 86, 0.6)',
-                                        'rgba(75, 192, 192, 0.6)',
-                                        'rgba(153, 102, 255, 0.6)'
-                                    ],
-                                    borderColor: [
-                                        'rgba(255, 99, 132, 1)',
-                                        'rgba(54, 162, 235, 1)',
-                                        'rgba(255, 206, 86, 1)',
-                                        'rgba(75, 192, 192, 1)',
-                                        'rgba(153, 102, 255, 1)'
-                                    ],
-                                    hoverBackgroundColor:[
-                                        'rgba(255, 99, 132, 1)',
-                                        'rgba(54, 162, 235, 1)',
-                                        'rgba(255, 206, 86, 1)',
-                                        'rgba(75, 192, 192, 1)',
-                                        'rgba(153, 102, 255, 1)'
-                                    ],
-                                    hoverBorderWidth: 5,
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    labels: {
-                                        color: 'white',
-                                        font: {
-                                            size: 20,
-                                            family:'Helvetica'
-                                        }
-                                    }
-                                }
-                            },
-
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
+                    }
                 }
             });
 
@@ -539,7 +558,6 @@
         rota_selecionada = 5;
 
         buscarRota(15);
-        grafico();
 
     }
 
@@ -555,5 +573,48 @@
         box_rift.style.display = `block`;
 
     }
+
+    function configurarGrafico() {
+
+        console.log("executei configurarGrafico")
+
+        var configuracoes = {
+
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: 'white',
+                                    font: {
+                                        size: 20,
+                                    family:'Helvetica'
+                                }
+                            }
+                        }
+                    },
+
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+
+        return configuracoes;
+    }
+
+    function plotarGrafico(dados){
+
+        console.log(`valor top: ${qtd_top}, valor mid: ${qtd_mid}\n
+                    valor jg: ${qtd_jg}, valor adc: ${qtd_adc}, valor sup: ${qtd_sup}`);
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: dados,
+                        options: configurarGrafico()
+        });
+    }
+
 
 </script>

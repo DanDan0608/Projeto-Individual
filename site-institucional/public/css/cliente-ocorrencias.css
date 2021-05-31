@@ -1,0 +1,185 @@
+@font-face {
+
+	font-family: Bold;
+	src: url(../Font/Beaufort\ W01\ Bold.ttf)
+
+}
+
+.container-respiro{
+
+    max-width: 65%;
+    height: 100%;
+    margin: 12% auto;
+
+}
+
+.box-ocorrencias{
+
+	height: 500px;
+	background-color: rgba(35, 114, 136, 0.8);
+	border-radius: 20px;
+	text-align: center;
+	box-shadow: 10px 0px 36px 11px rgb(44, 125, 255);
+
+}
+
+.title_report{
+
+	font-size: 50px;
+	font-family: Bold;
+	color: #fffbd4;;
+	padding: 20px 0;
+	text-shadow: black 2px 2px;
+
+}
+
+.input_nome_jogador{
+
+	width: 100%;
+
+}
+
+.input_nome_jogador .text-input{
+
+	font-size: 25px;
+	color: white;
+	text-shadow: black 2px 2px;
+
+}
+
+.input_nome_jogador .nome_jogador{
+
+	width: 270px;
+	height: 30px;
+	outline: none;
+	border: none;
+
+	border-radius: 20px;
+	border: 2px black solid;
+	background-color: rgba(211, 146, 255, 0.363);
+	color: white;
+	font-size: 15px;
+	padding-left: 30px;
+	transition: 0.5s;
+
+}
+
+.input_nome_jogador .nome_jogador:focus{
+
+	width: 400px;
+	border: 5px solid rebeccapurple;
+	transition: 0.5s;
+
+}
+
+.tipo_reporte{
+
+	width: 90%;
+	text-align: center;
+
+}
+
+.select-estiloso { 
+
+	width: 90%;
+	height: 34px;
+	background-color: rgba(211, 146, 255, 0.363);
+	border: 2px solid black;
+	transition: 0.5s;
+	margin: 20px 40px;
+
+}   
+
+.select-estiloso select { 
+
+	background: transparent; 
+	width: 100%;
+	height: 34px;
+	font-size: 16px;
+	color: white;
+	text-shadow: black 2px 2px;
+	
+}
+
+.select-estiloso select option { 
+	
+	background-color: rgba(53, 0, 138, 0.5);
+	outline: 2px solid blueviolet;	
+	font-size: 16px;
+
+}
+
+.box-desc-ocorrencia{
+
+	float: left;
+	width: 100%;
+
+}
+
+.box-desc-ocorrencia .title-desc{
+
+	font-size: 25px;
+	color: white;
+	text-shadow: black 2px 2px;
+	margin-bottom: 20px;
+
+}
+
+.box-desc-ocorrencia .input-desc-ocorrencia{
+
+	width: 90%;
+	height: 100px;
+
+	color: white;
+	padding-left: 20px;
+	display: inline-block;
+
+	transition: 0.5s;
+	background-color: rgba(211, 146, 255, 0.363);
+	border: 2px solid black;
+	border-radius: 20px;
+	outline: none;
+
+}
+
+.box-desc-ocorrencia .input-desc-ocorrencia:focus{ 
+
+	border: 5px solid rebeccapurple;
+	transition: 0.5s;
+	outline: none;
+	
+}
+
+::-webkit-input-placeholder{
+
+	color: white;
+	font-size: 15px;
+	text-shadow: black 2px 2px;
+
+}
+
+.but_registrar{
+
+	width: 200px;
+	height: 50px;
+
+	font-size: 20px;
+	font-family: Bold;
+
+	background-color: slateblue;
+	color: white;
+	text-shadow: black 2px 2px;
+	box-shadow: 10px 0px 36px 11px cornflowerblue;
+
+	border-radius: 20px;
+	margin-top: 40px;
+	transition: 0.5s;
+
+}
+
+.but_registrar:hover{
+
+	box-shadow: 10px 0px 36px 11px rgb(2, 72, 202);
+	transition: 0.5s;
+
+}

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
+var ocorrencia = require('../models').ocorrencia;
 
 let sessoes = [];
 
@@ -57,7 +58,46 @@ router.post('/cadastrar', function(req, res, next) {
   	});
 });
 
+	var id_users = '';
 
+router.post('/registrar', function(req, res, next) {
+	console.log('Criando uma ocorrencia');
+
+	var nick = req.body.nick;
+
+	console.log(`Nick recebido: ${nick}`)
+
+	let instrucaoSql = `select id_usuario from usuarios where nickname_lol = '${nick}'`;
+
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, {
+		model: Usuario
+	}).then(resultado => {
+
+		id_users = resultado[0].dataValues.id_usuario;
+
+		console.log(`${id_users}`);
+
+	ocorrencia.create({
+
+		desc: req.body.desc_ocorrencia,
+		fk_tipo: req.body.tipo_reporte,
+		fk_usuario: id_users
+
+	}).then(result => {
+
+		console.log(`Registro criado: ${result}`)
+
+        res.send(result);
+
+    }).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+
+  		});
+	});
+});
 /* Verificação de usuário */
 router.get('/sessao/:nick', function(req, res, next) {
 	let nick = req.params.nick;
@@ -97,6 +137,9 @@ router.get('/sair/:nick', function(req, res, next) {
 });
 
 var jogadores = [];
+var rotas_jogadores = [];
+var ocorrencias = [];
+var todos_registros = [];
 
 /* Recuperar todos os usuários */
 router.get('/buscar/:fk_rota', function(req, res, next) {
@@ -107,17 +150,17 @@ router.get('/buscar/:fk_rota', function(req, res, next) {
 
 	if(fk_rota == 15){
 
-		instrucaoSql = `select * from usuarios`;
+		instrucaoSql = `select * from usuarios left join ocorrencias on id_usuario = fk_usuario`;
 
 	}else if(fk_rota == 9){
 
 		// abaixo, escreva o select de dados para o Workbench
-		instrucaoSql = `select * from usuarios where fk_rota = 4 or fk_rota = 5`;
+		instrucaoSql = `select * from usuarios left join ocorrencias on id_usuario = fk_usuario where fk_rota = 4 or fk_rota = 5`;
 
 	}else{
 
 		// abaixo, escreva o select de dados para o Workbench
-		instrucaoSql = `select * from usuarios where fk_rota = ${fk_rota}`;
+		instrucaoSql = `select * from usuarios left join ocorrencias on id_usuario = fk_usuario where fk_rota = ${fk_rota}`;
 	
 	}
 
@@ -130,20 +173,45 @@ router.get('/buscar/:fk_rota', function(req, res, next) {
 		console.log(`Encontrados: ${resultado.length}`);
 
 		jogadores = [];
+		rotas_jogadores = [];
+		ocorrencias = [];
+		todos_registros = [];
 
 		for(var cont = 0; cont < resultado.length ; cont++){
 
 		console.log(`enviando ${resultado[cont].dataValues.nickname_lol}`);
 		console.log(`enviando ${resultado[cont].dataValues.fk_rota}`);
+		console.log(`enviando ${resultado[cont].dataValues.desc_ocorrencia}`);
 
-		jogadores.push(resultado[cont].dataValues.nickname_lol);
-		jogadores.push(resultado[cont].dataValues.fk_rota);
+		if(resultado[cont].dataValues.desc_ocorrencia == null){
+
+			var desc_ocorrencia = `sem ocorrencias`;
+
+			todos_registros.push(resultado[cont].dataValues.nickname_lol, resultado[cont].dataValues.fk_rota,
+				desc_ocorrencia);
+
+		}else if(resultado[cont].dataValues.id_usuario == resultado[cont + 1].dataValues.id_usuario){
+			
+			ocorrencias.push(`${resultado[cont].dataValues.desc_ocorrencia} <br><br> ${resultado[cont+1].dataValues.desc_ocorrencia}`);
+
+			console.log(`colocando ocorrencias no vetor: ${resultado[cont].dataValues.desc_ocorrencia, resultado[cont+1].dataValues.desc_ocorrencia}`)
+
+			todos_registros.push(resultado[cont].dataValues.nickname_lol, resultado[cont].dataValues.fk_rota,
+				ocorrencias);
+
+		}else{
+			
+			todos_registros.push(resultado[cont].dataValues.nickname_lol, resultado[cont].dataValues.fk_rota,
+				resultado[cont].dataValues.desc_ocorrencia);
+			
+
+			}
 
 		}
 	
-	res.json(jogadores);
+	res.json(todos_registros);
 
-	console.log(`res.json = ${jogadores}`);
+	console.log(`res.json = ${todos_registros}`);
 
 	}).catch(erro => {
 		console.error(erro);
