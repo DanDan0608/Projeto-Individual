@@ -39,43 +39,51 @@
 
                 <div class="title-cadastro">Faça seu cadastro e venha se divertir</div>
 
-                    <form id="form_cadastro" method="post" class="field-bottom" onsubmit="return cadastrar()">
+                    <form id="form_cadastro" method="post" class="field-bottom">
 
                         <div class="field">
                             Digite seu nickname do lol: <br>
-                            <input name="nick" placeholder="Ex: ClaudinhoGameplays" class="input" autofocus>
+                            <input name="nick" id="nick" class="input" autofocus>
                         </div>
 
                         <div class="field">
                             Digite seu email: <br>
-                            <input name="email" placeholder="Ex: xxxx@gmail.com" class="input" autofocus>
+                            <input name="email" id="email" placeholder="Ex: xxxx@gmail.com" class="input" >
                         </div>
                 
-                            
+                        
                         <div class="field">
                             Digite sua senha: <br>
-                            <input name="senha" type="password" placeholder="****************" class="input"><br>
+                            <input name="senha" id="senha" type="password" placeholder="****************" class="input"><br>
                         </div>
 
+                        <img src="img/img-cadastro/loading.gif" class="loading" id="loading" alt="">    
+                        
                         <div class="field">
                             Confirme a senha: <br>
-                            <input type="password" placeholder="****************" class="input"><br>
+                            <input type="password" id="senha_confirmed" placeholder="****************" class="input"><br>
                         </div>
-
+                        
                         <input name="rota" id="input_rota" style="display: none;">
-                
+                        
                         <div class="button">
-                            <button type="submit" id="btn_entrar" class="button-cadastro">Fazer Cadastro</button>
-                        </div>
 
+                            <button type="button" id="btn_entrar" class="button-cadastro" onclick="validar_campos()">
+
+                                Fazer Cadastro
+
+                            </button>
+
+                        </div>
                     </form>
 
+                    
                     <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
                         Erro no cadastro
                     </div>
+                    
+                </div>
                 
-            </div>
-
             <!-- <img src="img/img-cadastro/ez.png" alt=""> -->
 
             <div class="box-change-routes">
@@ -172,7 +180,32 @@
 
     }
 
+    function validar_campos(){
+
+        // vereficando se há campos vazios
+        if( nick.value == '' || email.value == '' || senha.value == '' || senha_confirmed.value == '' 
+        || input_rota.value == ''){
+
+            return(alert('Preencha todos os campos'));
+
+        }else if( ((email.value).toUpperCase()).indexOf('@') <= '0' || 
+        ((email.value).toUpperCase()).indexOf('@') >= ((email.value).toUpperCase()).indexOf('.COM') ){
+
+            alert('Email inválido');
+
+        }else if( senha.value != senha_confirmed.value ){
+
+            return(alert('Senha e Confirmar senha não batem'));
+
+        }else{
+
+            cadastrar();
+
+        }
+    }
+
     function cadastrar() {
+
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/cadastrar", {
@@ -199,12 +232,15 @@
 
     function aguardar() {
         btn_entrar.disabled = true;
+        loading.display = 'block';
         div_erro.style.display='none';
     }
 
     function finalizar_aguardar() {
         btn_entrar.disabled = false;
+        loading.display = 'none';
         div_erro.style.display='block';
     }
+
 
 </script>

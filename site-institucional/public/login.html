@@ -42,22 +42,22 @@
 
         <div class="title-login">DIGITE SEU LOGIN</div>
 
-        <form id="form_login" class="field-bottom" method="post" onsubmit="return entrar()">
+        <form id="form_login" class="field-bottom" method="post">
 
             <div class="field">
             Digite seu nick: <br>
-            <input name="nick" placeholder="Ex: xxxx@gmail.com" class="input" autofocus>
+            <input name="nick" id="nick" placeholder="Ex: xxxx@gmail.com" class="input" autofocus>
             </div>
 
             
             <div class="field">
                 Digite sua senha: <br>
-                <input name="senha" type="password" placeholder="****************" class="input"><br>
+                <input name="senha" id="senha" type="password" placeholder="****************" class="input"><br>
                 <span class="forget-pass"> <a href="#">Esqueci a senha</a></span>
             </div>
 
             <div class="button">
-                <button id="btn_entrar" class="button-login">Fazer Login</button>
+                <button id="btn_entrar" type="button" onclick="entrar()" class="button-login">Fazer Login</button>
             </div>
 
         </form>
@@ -79,6 +79,13 @@
 <script>
 
 function entrar() {
+
+        if(nick.value == '' || senha.value == ''){
+
+            alert('Preencha todos os campos');
+
+        }else{
+
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));
         fetch("/usuarios/autenticar", {
@@ -110,7 +117,7 @@ function entrar() {
 
         return false;
     }
-
+}
     function aguardar() {
         btn_entrar.disabled = true;
         div_erro.style.display = 'none';

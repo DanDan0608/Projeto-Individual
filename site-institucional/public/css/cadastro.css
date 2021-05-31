@@ -147,3 +147,10 @@ body{
     transform: translateY(4px);
 
 }
+
+.loading{
+
+    position: fixed;
+    display: none;
+
+}

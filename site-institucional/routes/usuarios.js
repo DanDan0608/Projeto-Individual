@@ -194,10 +194,13 @@ router.get('/buscar/:fk_rota', function(req, res, next) {
 			
 			ocorrencias.push(`${resultado[cont].dataValues.desc_ocorrencia} <br><br> ${resultado[cont+1].dataValues.desc_ocorrencia}`);
 
-			console.log(`colocando ocorrencias no vetor: ${resultado[cont].dataValues.desc_ocorrencia, resultado[cont+1].dataValues.desc_ocorrencia}`)
+			console.log(`colocando ocorrencias no vetor: ${resultado[cont].dataValues.desc_ocorrencia,
+				 resultado[cont+1].dataValues.desc_ocorrencia}`)
 
 			todos_registros.push(resultado[cont].dataValues.nickname_lol, resultado[cont].dataValues.fk_rota,
 				ocorrencias);
+
+				cont++;
 
 		}else{
 			
