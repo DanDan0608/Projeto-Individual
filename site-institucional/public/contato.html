@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/contato.css">
+    <title>CONTATO</title>
+
+</head>
+
+<body>
+    
+    <div class="box-navbar">
+
+        <div class="container-respiro">
+
+            <img src="img/img-home/league-friends.png" alt="">
+
+            <ul class="navbar">
+                <li><a href="index.html" class="n-choose">INICIO</a></li>
+                <li><a href="contato.html" class="choose">CONTATO</a></li>
+                <li><a href="cadastro.html" class="n-choose">CADASTRO</a></li>
+                <li><a href="login.html" class="n-choose">LOGIN</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="container-respiro-box">
+
+        <div class="box-geral-contatos">
+
+            <div class="gif" id="zilean_gif" onclick="disc()">
+               <div class="text">Entre no nosso discord</div>
+            </div>
+
+            <div class="gif" id="zoe_gif" onclick="help()">
+                <div class="text">Entre em contato conosco</div>
+             </div>
+             
+            <div class="gif" id="vi_gif" onclick="redes()">
+                <div class="text">Nos apoie no twitter</div>
+             </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function disc(){
+
+        window.open('https://discord.gg/kScU4Atg');
+
+    }
+    
+    function help(){
+
+        window.open('https://newaccount1621899803908.freshdesk.com/support/tickets/new');
+
+    }
+
+    function redes(){
+
+        window.open('https://twitter.com/LeagueofFrien10');
+
+    }
+    
+    window.onload = function() {
+        
+    // reprodução do gif do zillean
+
+    function ZileanGif(element, frames, speed) {
+    this.currentFrame = 0,
+    this.domElement   = element,
+    this.frames       = frames || null,
+    this.speed        = speed  || 10;
+    this.interval;
+    this.init_zilean();
+
+    }
+
+ZileanGif.prototype = {
+
+    init_zilean: function() {
+        // set the first one to the first image
+        // console.log(this.frames[0])
+        this.domElement.style.backgroundImage = "url(" + this.frames[0] + ")";
+    },
+    pause_zilean: function() {
+        clearInterval(this.interval);
+    },
+    resume_zilean: function() {
+        var that = this;
+        
+        that.interval = setInterval(function(){
+            console.log(that.frames[that.currentFrame])
+            console.log(that.frames.length);
+            that.currentFrame < that.frames.length - 1 ? that.currentFrame++ : that.currentFrame = 0;
+            that.domElement.style.backgroundImage = "url(" + that.frames[that.currentFrame] + ")";
+        }, this.speed);
+    }
+}
+
+var frames = [
+                'img/img-contatos/zillean-gif/frame-01.gif',
+                'img/img-contatos/zillean-gif/frame-02.gif',
+                'img/img-contatos/zillean-gif/frame-03.gif',
+                'img/img-contatos/zillean-gif/frame-04.gif',
+                'img/img-contatos/zillean-gif/frame-05.gif',
+                'img/img-contatos/zillean-gif/frame-06.gif',
+                'img/img-contatos/zillean-gif/frame-07.gif',
+                'img/img-contatos/zillean-gif/frame-08.gif',
+                'img/img-contatos/zillean-gif/frame-09.gif',
+                'img/img-contatos/zillean-gif/frame-10.gif',
+                'img/img-contatos/zillean-gif/frame-11.gif',
+                'img/img-contatos/zillean-gif/frame-12.gif']
+
+var elem_zilean = document.querySelector('#zilean_gif'),
+    gif_zilean  = new ZileanGif(elem_zilean, frames, 60);
+
+
+elem_zilean.addEventListener('mouseenter', function(){
+    gif_zilean.resume_zilean();
+});
+
+elem_zilean.addEventListener('mouseleave', function() {
+    gif_zilean.pause_zilean();
+
+});
+
+    // Fim da reprodução do gif do zilean
+    
+    // reprodução do gif da zoe
+    
+function ZoeGif(element, frames_zoe, speed) {
+    this.currentFrame = 0,
+    this.domElement   = element,
+    this.frames_zoe       = frames_zoe || null,
+    this.speed        = speed  || 10;
+    this.interval;
+    this.init_zoe();
+}
+
+ZoeGif.prototype = {
+    init_zoe: function() {
+        // set the first one to the first image
+        // console.log(this.frames_zoe[0])
+        this.domElement.style.backgroundImage = "url(" + this.frames_zoe[0] + ")";
+    },
+    pause_zoe: function() {
+        clearInterval(this.interval);
+    },
+    resume_zoe: function() {
+        var that = this;
+        
+        that.interval = setInterval(function(){
+            console.log(that.frames_zoe[that.currentFrame])
+            console.log(that.frames_zoe.length);
+            that.currentFrame < that.frames_zoe.length - 1 ? that.currentFrame++ : that.currentFrame = 0;
+            that.domElement.style.backgroundImage = "url(" + that.frames_zoe[that.currentFrame] + ")";
+        }, this.speed);
+    }
+}
+
+var frames_zoe = [
+                'img/img-contatos/zoe-gif/frame_00_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_01_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_02_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_03_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_04_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_05_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_06_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_07_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_08_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_09_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_10_delay-0.1s.gif',
+                'img/img-contatos/zoe-gif/frame_11_delay-0.1s.gif']
+
+var elem_zoe = document.querySelector('#zoe_gif'),
+    gif_zoe  = new ZoeGif(elem_zoe, frames_zoe, 90);
+
+
+elem_zoe.addEventListener('mouseenter', function(){
+    gif_zoe.resume_zoe();
+});
+
+elem_zoe.addEventListener('mouseleave', function() {
+    gif_zoe.pause_zoe();
+
+});
+
+    // Fim da reprodução do gif da zoe
+
+    // reprodução do gif da vi
+    
+    function ViGif(element, frames_vi, speed) {
+    this.currentFrame = 0,
+    this.domElement   = element,
+    this.frames_vi    = frames_vi || null,
+    this.speed        = speed  || 10;
+    this.interval;
+    this.init_vi();
+}
+
+ViGif.prototype = {
+    init_vi: function() {
+        // set the first one to the first image
+        // console.log(this.frames_vi[0])
+        this.domElement.style.backgroundImage = "url(" + this.frames_vi[0] + ")";
+    },
+    pause_vi: function() {
+        clearInterval(this.interval);
+    },
+    resume_vi: function() {
+        var that = this;
+
+        that.interval = setInterval(function(){
+            console.log(that.frames_vi[that.currentFrame])
+            console.log(that.frames_vi.length);
+            that.currentFrame < that.frames_vi.length - 1 ? that.currentFrame++ : that.currentFrame = 0;
+            that.domElement.style.backgroundImage = "url(" + that.frames_vi[that.currentFrame] + ")";
+        }, this.speed);
+    }
+}
+
+var frames_vi = [
+                'img/img-contatos/vi-gif/frame0.gif',
+                'img/img-contatos/vi-gif/frame1.gif',
+                'img/img-contatos/vi-gif/frame2.gif',
+                'img/img-contatos/vi-gif/frame3.gif',
+                'img/img-contatos/vi-gif/frame4.gif',
+                'img/img-contatos/vi-gif/frame5.gif',
+                'img/img-contatos/vi-gif/frame6.gif',
+                'img/img-contatos/vi-gif/frame7.gif',
+                'img/img-contatos/vi-gif/frame8.gif',
+                'img/img-contatos/vi-gif/frame9.gif',
+                'img/img-contatos/vi-gif/frame10.gif',
+                'img/img-contatos/vi-gif/frame11.gif']
+
+var elem_vi = document.querySelector('#vi_gif'),
+    gif_vi  = new ViGif(elem_vi, frames_vi, 70);
+
+
+elem_vi.addEventListener('mouseenter', function(){
+    gif_vi.resume_vi();
+
+});
+
+elem_vi.addEventListener('mouseleave', function() {
+    gif_vi.pause_vi();
+
+});
+
+}
+
+</script>

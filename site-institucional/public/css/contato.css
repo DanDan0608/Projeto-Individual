@@ -1,0 +1,87 @@
+@font-face {
+	font-family: Bold;
+	src: url(../Font/Beaufort\ W01\ Bold.ttf)
+}
+
+body{
+
+    margin: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/img-contatos/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+.container-respiro-box {
+
+    max-width: 63%;
+    height: 100%;
+    margin: 200px auto;
+
+  }
+
+.box-geral-contatos{
+
+    width: 800px;
+    height: 200px;
+    background: linear-gradient(rgba(97, 231, 255, 0.5), rgba(177, 129, 255, 0.5), rgba(97, 231, 255, 0.5)) ;
+    box-shadow: 29px 18px 73px 13px blueviolet;
+    padding: 20px 0;
+
+}
+
+.gif{
+
+	width: 200px;
+	height: 200px;
+    text-align: center;
+    float: left;
+    margin-left: 50px;
+
+}
+
+#zilean_gif{
+
+	background-image: url('../img/img-contatos/zillean-gif/frame-01.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: cover;
+
+}
+
+#zoe_gif{
+
+    background-image: url('../img/img-contatos/zoe-gif/frame_00_delay-0.1s.gif');
+    background-repeat: no-repeat;
+	background-position: center;
+    background-size: cover;
+
+}
+
+#zoe_gif:hover, #zilean_gif:hover, #vi_gif:hover{
+
+    width: 220px;
+    height: 220px;
+    cursor: pointer;
+
+}
+
+#vi_gif{
+
+    background-image: url('../img/img-contatos/vi-gif/frame0.gif');
+    background-repeat: no-repeat;
+	background-position: center;
+    background-size: cover;
+
+}
+
+.text{
+     
+    margin-top: 70%;
+    color: #fffbd4;
+    text-shadow: 2px 3px rgba(0, 0, 0, 1);
+    font-family: Bold;
+    font-size: 20px;
+
+}

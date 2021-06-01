@@ -1,0 +1,22 @@
+.box-route-mid{
+
+    height: 650px;
+    width: 1000px;
+    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/img-cliente/mid.jpg');
+    background-position: center;
+    text-align: center;
+    overflow-y: scroll;
+    
+}
+
+.box-route-mid .title-players-mid{
+    
+    font-size: 50px;
+    color: white;
+    text-shadow: blueviolet 4px 1px;
+    
+}
+
+
+
+

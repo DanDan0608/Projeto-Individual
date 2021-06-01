@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/box-route-mid.css">
+    <link rel="stylesheet" href="css/box-route-bot.css">
+    <link rel="stylesheet" href="css/box-route-top.css">
+    <link rel="stylesheet" href="css/box-route-jg.css">
+    <link rel="stylesheet" href="css/box-route-all.css">
+    <link rel="stylesheet" href="css/cliente-perfil.css">
+    <link rel="stylesheet" href="css/box-perfil.css">
+    <link rel="stylesheet" href="css/cliente.css">
+
+    <script type="text/javascript" src="javascript/validar_login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Cliente</title>
+
+</head>
+
+<body>
+
+    <div class="navigation">
+
+        <span class="logo"><img src="img/img-home/league-friends.png" alt=""></span>
+        
+        <ul>
+            <li class="choose">
+                <a href="cliente.html">
+                    <span class="icon"><img src="img/img-cliente/house.png" alt=""></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="cliente - perfil.html">
+                    <span class="icon"><img src="img/img-cliente/profile.png" alt=""></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a href="cliente-ocorrencias.html">
+                    <span class="icon"><img src="img/img-cliente/setting.png" alt=""></i></span>
+                    <span class="title">Reportar um jogador</span>
+                </a>
+            </li>
+            <li class="down">
+                <a onclick="logoff()">
+                    <span class="icon"><img src="img/img-cliente/log_out.png" alt=""></i></span>
+                    <span class="title">Sair</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="toggle" onclick="toggleMenu()"></div>
+
+<div class="container-respiro">
+
+    <div class="container-geral">
+        
+        <img src="img/img-cliente/back-arrow.png" alt="" class="back-arrow" id="back_arrow" onclick="back()">
+
+        <div class="intructions" id="instructions">
+
+            <h1>Instruções</h1>
+
+            <div class="text">
+
+                Para achar pessoas para jogar, selecione a rota que deseja achar a pessoa,
+                por exemplo, Se você escolher a rota do meio,
+                você encontrará pessoas que preferem jogar nessa rota.
+                Se quiser encontrar qualquer amigo indendente da rota, selecione uma das bases.
+
+            </div>
+
+            <br><br>
+
+            Para mais informações acesse o menu.<br>Divirta-se!
+
+            <br>
+
+            <button onclick="entendido()">Entendido!</button>
+
+        </div>
+
+        <div class="box-rift" style="display: none;" id="box_rift">
+
+            <h1>Selecione uma rota</h1>
+
+            <section>
+
+                <img src="img/img-cliente/image.png" usemap="#image-map" class="mapper">
+
+                <!-- Caso consiga usar a api do lol
+                <map name="image-map">
+                    <area class="iborder000000 icolor00ffff" target="_blank" alt="bot" title="bot" href="#" coords="783,580,758,518,725,581,373,589,372,529,759,518,809,517,813,476,845,456,889,460,881,411,874,357,838,182,905,179,958,365,888,399,967,417,969,474,948,513,918,544,866,570" shape="poly">
+                    <area class="iborder000000 icolor00ffff" target="_blank" alt="mid" title="mid" href="#" coords="298,383,347,413,607,231,580,182,645,194,716,145,674,127,573,191,529,226,464,269,443,288,464,335,400,317" shape="poly">
+                    <area class="iborder000000 icolor00ffff" target="_blank" alt="top" title="top" href="#" coords="387,32,622,26,638,61,297,70,241,102,210,142,167,360,99,359,136,202,147,160,209,144,159,113,173,93,205,68,248,44,328,29,363,66" shape="poly">
+                    <area target="_blank" alt="Jg1" title="Jg1" href="#" coords="514,426,508,445,522,493,402,496,362,424,418,384,493,343,575,282,735,159,798,174,822,180,846,284,857,382,784,481,523,492,507,446,534,470,562,467,577,444,567,419,543,415" shape="poly">
+                    <area target="_blank" alt="Jg2" title="Jg2" href="#" coords="518,129,571,77,607,70,662,113,560,176,293,357,232,331,202,328,222,284,247,247,219,209,240,150,289,115,351,87,451,88,570,77,535,115,509,88,489,97,483,114,500,128" shape="poly">
+                    <area target="_blank" alt="tower-mid1" title="tower-mid1" href="#" coords="418,316,441,320,437,284,415,287" shape="poly">
+                    <area target="_blank" alt="tower-mid2" title="tower-mid2" href="#" coords="608,221,607,193,627,220,623,193" shape="poly">
+                    <area target="_blank" alt="tower-bot1" title="tower-bot1" href="#" coords="763,549,760,576,743,573,749,545" shape="poly">
+                    <area target="_blank" alt="tower-bot2" title="tower-bot2" href="#" coords="947,379,959,382,958,405,940,403" shape="poly">
+                    <area target="_blank" alt="tower-top1" title="tower-top1" href="#" coords="157,150,169,145,165,124,153,128" shape="poly">
+                    <area target="_blank" alt="tower-top2" title="tower-top2" href="#" coords="352,18,365,17,368,43,356,42" shape="poly">
+                </map> -->
+
+                <map name="image-map">
+                    
+                    <area class="iborder000000 icolor00ffff" alt="bot" title="bot" href="#" onclick="bot()"
+                    coords="783,580,756,582,726,581,373,589,372,529,779,513,809,517,813,476,845,456,889,460,881,411,874,357,838,182,905,179,958,365,967,399,967,417,969,474,948,513,918,544,866,570" shape="poly">
+                    
+                    <area class="iborder000000 icolor00ffff" alt="mid" title="mid"
+                    coords="292,388,336,424,728,150,678,122" shape="poly" onclick="mid()">
+
+                    <area class="iborder000000 icolor00ffff" alt="top" title="top" href="#" onclick="topp()"
+                    coords="387,32,622,26,638,61,297,70,241,102,210,142,167,360,99,359,136,202,147,160,152,137,159,113,173,93,205,68,248,44,328,29,361,28" shape="poly">
+                    
+                    <area alt="Jg1" title="Jg1" href="#" onclick="jg()"
+                    coords="522,493,402,496,362,424,418,384,493,343,575,282,735,159,798,174,822,180,846,284,857,382,784,481,523,492" shape="poly">
+                    
+                    <area alt="Jg2" title="Jg2" href="#" onclick="jg()"
+                    coords="571,77,607,70,662,113,560,176,293,357,232,331,202,328,222,284,247,247,219,209,240,150,289,115,351,87,448,79,570,77" shape="poly">
+                    
+                    <area class="iborder000000 icolor00ffff"  alt="base1" title="base1" href="#" onclick="todos()" 
+                    coords="76,392,92,392,190,397,245,412,256,418,268,417,295,434,287,445,306,472,312,495,314,516,316,534,325,537,321,574,304,585,290,591,141,588,119,610,4,614,1,559,38,526" shape="poly">
+                    
+                    <area class="iborder000000 icolor00ffff" alt="base2" title="base2" href="#" onclick="todos()"
+                    coords="870,21,910,139,899,153,859,153,847,147,810,139,789,137,765,131,751,133,714,119,713,101,687,60,676,56,671,40,676,21" shape="poly">
+                
+                </map>
+
+            </section>
+
+        </div>
+
+        <div class="box-route-mid" id="route_mid" style="display: none;">
+
+            <span class="title-players-mid">JOGADORES DO MID</span><br>
+
+            <div id="jogadores_mid"></div>
+
+        </div>
+
+        
+        <div class="box-route-bot" id="route_bot" style="display: none;">
+
+            <span class="title-players-bot">JOGADORES DO BOT</span><br>
+
+            <div id="jogadores_bot"></div>
+
+        </div>
+
+        
+        <div class="box-route-top" id="route_top" style="display: none;">
+
+            <span class="title-players-top">JOGADORES DO TOP</span><br>
+
+            <div id="jogadores_top"></div>
+            
+            </div>
+
+        </div>
+
+        <div class="box-route-jg" id="route_jg" style="display: none;">
+
+            <span class="title-players-jg">JOGADORES DA JUNGLE</span><br>
+
+            <div id="jogadores_jg"></div>
+
+        </div>
+
+        <div class="box-route-all" id="route_all" style="display: none;">
+
+            <span class="title-players-all">TODOS OS JOGADORES</span><br>
+
+            <div class="canva">
+
+                <canvas id="myChart"></canvas>
+
+            </div>
+
+            <div id="jogadores_all"></div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="mapper/wz_jsgraphics.js"></script>
+<script type="text/javascript" src="mapper/mapper.js"></script>
+
+<script type="text/javascript">
+    
+    function toggleMenu(){
+
+        let navigation = document.querySelector('.navigation');
+        let toggle = document.querySelector('.toggle');
+
+        navigation.classList.toggle('active')
+        toggle.classList.toggle('active');
+    }
+</script>
+
+<script>
+
+    var rota_selecionada = 0;
+    var qtd_top = 0
+    var qtd_mid = 0;
+    var qtd_jg = 0;
+    var qtd_adc = 0;
+    var qtd_sup = 0;
+
+    // function grafico(){
+
+    //     console.log('Executei grafico');
+
+    //     fetch(`/usuarios/grafico/`, { cache: 'no-store' }).then(function (response) {
+
+    //         if (response.ok) {
+
+    //         }
+            
+    //     });
+
+    function buscarRota(fk_rota) {
+        
+        var vereficar0 = 0;
+        var vereficar1 = 1;
+        var vereficar2 = 2;
+        var ocorrencia = '';
+        var src_img = ``;
+        var nome_usuario = ``;
+        var msg = ``;
+
+        console.log("executei buscarRota")
+
+        // Buscando rota
+
+        fetch(`/usuarios/buscar/${fk_rota}`, { cache: 'no-store' }).then(function (response) {
+
+            if (response.ok) {
+                
+                response.json().then(function (resposta) {
+
+                    // Vereficando se há registros 
+
+                    if(resposta.length == 0){
+
+                        msg = `<div class="box-perfil">
+
+                        <div class="name_user" id="usuario_nome">Sem usuários</div>
+
+                        <div id="box_info" class="box-info">
+
+                            <div class="lane">
+
+                                <div class="text-for-lane">Rota Favorita:</div>
+                                    
+                                <img src="" alt="" id="img_rota">
+                                    
+                            </div>
+
+                            <div class="line"></div>
+
+                            <div class="reports">
+
+                            <div class="text-for-reports">Ocorrências:</div>
+
+                            <div class="desc_ocorrencia"></div>
+
+                        </div>`;
+
+                        if(rota_selecionada == 1){
+
+                                jogadores_top.innerHTML += msg;
+
+                            }else if(rota_selecionada == 2){
+
+                                jogadores_mid.innerHTML += msg;
+
+                            }else if(rota_selecionada == 3){
+
+                                jogadores_jg.innerHTML += msg;
+
+                            }else if(rota_selecionada == 4){
+
+                                jogadores_bot.innerHTML += msg;
+
+                            }else{
+
+                                jogadores_all.innerHTML += msg;
+
+                            }
+                    }else{
+
+                    // Limpando as div
+
+                    jogadores_top.innerHTML = ``;
+                    jogadores_mid.innerHTML = ``;
+                    jogadores_jg.innerHTML = ``;
+                    jogadores_bot.innerHTML = ``;
+                    jogadores_all.innerHTML = ``;
+                    qtd_top = 0;
+                    qtd_mid = 0;
+                    qtd_jg = 0;
+                    qtd_adc = 0;
+                    qtd_sup = 0;
+
+                    // for para percorrer todas as respostas
+
+                    for (i = 0; i < resposta.length; i = i + 3) {
+
+                        console.log(`valores: ${resposta.length}`)
+
+                        // no indice par, contém o nome e no impar, contém a fk_rota
+
+                        for(cont = i; cont < (i+3); cont++){
+
+                        if(cont == vereficar0){
+
+                            nome_usuario = resposta[cont];
+
+                            console.log(`nome recebico ${nome_usuario}`);
+
+                            vereficar0 = vereficar0 + 3;
+                       
+                        } if( cont == vereficar1){
+
+                            if(resposta[cont] == undefined){
+
+                            console.log('Ta errado irmao');
+
+                            }else if(Number(resposta[cont]) == 1){
+
+                            src_img = `img/img-cadastro/top-icon.png`;
+                            qtd_top++;
+
+                            }else if(Number(resposta[cont]) == 2){
+
+                            src_img =  `img/img-cadastro/mid-icon.png`;
+                            qtd_mid++;
+
+                            }else if(Number(resposta[cont]) == 3){
+
+                            src_img = `img/img-cadastro/jg-icon.png`;
+                            qtd_jg++;
+
+                            }else if(Number(resposta[cont]) == 4){
+
+                            src_img = `img/img-cadastro/bot-icon.png`;
+                            qtd_adc++;
+
+                            }else if(Number(resposta[cont]) == 5){
+
+                            src_img = `img/img-cadastro/sup-icon.png`;
+                            qtd_sup++;
+
+                            }
+
+                            console.log(`img recebida ${src_img}`);
+
+                            vereficar1 = vereficar1 + 3;
+
+                        }else if( cont == vereficar2){
+                            
+                            ocorrencia = resposta[cont];
+
+                            console.log(`Ocorrencia recebida ${ocorrencia}`);
+
+                            vereficar2 = vereficar2 + 3;
+
+                            }
+                        }
+
+                        // criando os perfil dos usuarios com base no nome, rota e na ocorrencias
+
+                            msg = `<div class="box-perfil">
+
+                            <div class="name_user" id="usuario_nome">${nome_usuario}</div>
+
+                            <div id="box_info" class="box-info">
+
+                                <div class="lane">
+
+                                    <div class="text-for-lane">Rota Favorita:</div>
+                                    
+                                    <img src="${src_img}" alt="" id="img_rota">
+                                    
+                                </div>
+
+                                <div class="line"></div>
+
+                                <div class="reports">
+
+                                    <div class="text-for-reports">Ocorrências:</div>
+
+                                    <div class="desc_ocorrencia">${ocorrencia}</div>
+
+                            </div>`;
+
+                            // verefica em que rota tem que inserir
+
+                            if(rota_selecionada == 1){
+
+                                jogadores_top.innerHTML += msg;
+
+                            }else if(rota_selecionada == 2){
+
+                                jogadores_mid.innerHTML += msg;
+
+                            }else if(rota_selecionada == 3){
+
+                                jogadores_jg.innerHTML += msg;
+
+                            }else if(rota_selecionada == 4){
+
+                                jogadores_bot.innerHTML += msg;
+
+                            }else{
+
+                                jogadores_all.innerHTML += msg;
+
+                            }
+
+                    }
+                    if(rota_selecionada == 5){
+
+                        var dados = {
+                                labels: ['TopLane', 'MidLane', 'Jungler', 'AdCarry', 'Suporte'],
+
+                            datasets: [{
+
+                            data: [qtd_top, qtd_mid, qtd_jg, qtd_adc, qtd_sup],
+
+                            backgroundColor: [
+
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)'
+
+                            ],
+                            borderColor: [
+
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+
+                            ],
+                             hoverBackgroundColor:[
+
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+
+                            ],
+
+                            hoverBorderWidth: 5,
+
+                            borderWidth: 1
+
+                        }]
+                    }
+
+                    plotarGrafico(dados)
+
+                    }
+                }
+            });
+
+            } else {
+
+                console.error('Nenhum dado encontrado ou erro na API');
+
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function entendido() {
+
+        instructions.style.display = 'none';
+        box_rift.style.display = 'block';
+
+    }
+
+    function topp(){
+
+        route_top.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 1;
+
+        buscarRota(1);
+
+    }
+
+    function mid() {
+
+        route_mid.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 2
+
+        buscarRota(2);
+
+    }
+
+    function jg(){
+
+        route_jg.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 3;
+        
+        buscarRota(3);
+
+    }
+
+    function bot(){
+
+        route_bot.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 4
+
+        buscarRota(9);
+
+    }
+
+    function todos(){
+
+        route_all.style.display = `block`;
+        back_arrow.style.display = `block`;
+        box_rift.style.display = 'none';
+
+        rota_selecionada = 5;
+
+        buscarRota(15);
+
+    }
+
+    function back(){
+
+        route_bot.style.display = `none`;
+        route_mid.style.display = `none`;
+        route_jg.style.display = `none`;
+        route_top.style.display = `none`;
+        route_all.style.display = `none`;
+        back_arrow.style.display = `none`;
+
+        box_rift.style.display = `block`;
+
+    }
+
+    function configurarGrafico() {
+
+        console.log("executei configurarGrafico")
+
+        var configuracoes = {
+
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    color: 'white',
+                                    font: {
+                                        size: 20,
+                                    family:'Helvetica'
+                                }
+                            }
+                        }
+                    },
+
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+
+        return configuracoes;
+    }
+
+    function plotarGrafico(dados){
+
+        console.log(`valor top: ${qtd_top}, valor mid: ${qtd_mid}\n
+                    valor jg: ${qtd_jg}, valor adc: ${qtd_adc}, valor sup: ${qtd_sup}`);
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: dados,
+                        options: configurarGrafico()
+        });
+    }
+
+
+</script>

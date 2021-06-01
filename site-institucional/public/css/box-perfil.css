@@ -1,0 +1,120 @@
+.box-perfil{
+
+  background-color: rgba(35, 114, 136, 0.8);
+  height: 500px;
+  border-radius: 20px;
+  width: 720px;
+  margin: 5% 15%;
+  box-shadow: 0px 1px 42px 9px rgb(100 0 255 / 80%)  !important;
+
+}
+
+/* Personalizando barra da box do top */
+
+.box-route-top::-webkit-scrollbar-track {
+
+  background: purple;        /* color of the tracking area */
+    
+}
+
+.box-route-top::-webkit-scrollbar-thumb {
+
+  background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid white;  /* creates padding around scroll thumb */
+
+}
+
+.box-route-top::-webkit-scrollbar {
+
+  width: 12px;               /* width of the entire scrollbar */
+
+}
+
+  /* Personalizando barra da box do mid */
+
+.box-route-mid::-webkit-scrollbar-track {
+
+  background: purple;        /* color of the tracking area */
+    
+}
+
+.box-route-mid::-webkit-scrollbar-thumb {
+
+  background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid white;  /* creates padding around scroll thumb */
+
+}
+
+.box-route-mid::-webkit-scrollbar {
+
+  width: 12px;               /* width of the entire scrollbar */
+
+}
+
+  /* Personalizando barra da box do jg */
+
+.box-route-jg::-webkit-scrollbar-track {
+
+  background: purple;        /* color of the tracking area */
+    
+}
+
+.box-route-jg::-webkit-scrollbar-thumb {
+
+  background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid white;  /* creates padding around scroll thumb */
+
+}
+
+.box-route-jg::-webkit-scrollbar {
+
+  width: 12px;               /* width of the entire scrollbar */
+
+}
+
+  /* Personalizando barra da box do bot */
+
+.box-route-bot::-webkit-scrollbar-track {
+
+  background: purple;        /* color of the tracking area */
+  
+}
+
+.box-route-bot::-webkit-scrollbar-thumb {
+
+  background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid white;  /* creates padding around scroll thumb */
+
+}
+
+.box-route-bot::-webkit-scrollbar {
+
+  width: 12px;               /* width of the entire scrollbar */
+
+}
+
+/* Personalizando barra da box all */
+
+.box-route-all::-webkit-scrollbar-track {
+
+  background: purple;        /* color of the tracking area */
+  
+}
+
+.box-route-all::-webkit-scrollbar-thumb {
+
+  background-color: rgb(100 0 255 / 80%);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 1px solid white;  /* creates padding around scroll thumb */
+
+}
+
+.box-route-all::-webkit-scrollbar {
+
+  width: 12px;               /* width of the entire scrollbar */
+
+}

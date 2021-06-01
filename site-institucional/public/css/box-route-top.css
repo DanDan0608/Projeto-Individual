@@ -1,0 +1,19 @@
+.box-route-top{
+
+    height: 650px;
+    width: 1000px;
+    background:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../img/img-cliente/top.jpg');
+    background-position: center;
+    text-align: center;
+    overflow-y: scroll;
+    
+}
+
+.box-route-top .title-players-top{
+    
+    font-size: 50px;
+    color: white;
+    text-shadow: blueviolet 4px 1px;
+    
+}
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" href="css/cliente-ocorrencias.css">
+
+    <title>Rerpotar jogador</title>
+
+</head>
+
+<body>
+
+    <div class="navigation">
+
+        <span class="logo"><img src="img/img-home/league-friends.png" alt=""></span>
+        
+        <ul>
+            <li>
+                <a href="cliente.html">
+                    <span class="icon"><img src="img/img-cliente/house.png" alt=""></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li >
+                <a href="cliente - perfil.html">
+                    <span class="icon"><img src="img/img-cliente/profile.png" alt=""></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a href="cliente-ocorrencias.html" class="choose">
+                    <span class="icon"><img src="img/img-cliente/setting.png" alt=""></i></span>
+                    <span class="title">Reportar um jogador</span>
+                </a>
+            </li>
+            <li class="down">
+                <a onclick="logoff()">
+                    <span class="icon"><img src="img/img-cliente/log_out.png" alt=""></i></span>
+                    <span class="title" >Sair</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="toggle" onclick="toggleMenu()"></div>
+
+    <div class="container-respiro">
+        
+        <form class="box-ocorrencias" method="post" onsubmit="return cadastrar()" id="form_registro">
+
+            <div class="title_report">Reporte um jogador</div>
+
+            <div class="input_nome_jogador">
+
+                <span class="text-input"> Digite o nome do jogador: </span>
+                <input name="nick" id="input_nome" class="nome_jogador">
+            
+            </div>
+
+            <div class="select-estiloso">
+
+                <select name="tipo_reporte" id="tipo_reporte">
+
+                    <option value="" hidden>- Selecione o motivo do reporte -</option>
+
+                    <option value="1">- Atitude negativa</option>
+                    <option value="2">- Abandono de partida/ociosidade</option>
+                    <option value="3">- Abuso Verbal</option>
+                    <option value="4">- Feeding intencional</option>
+                    <option value="5">- Discurso de ódio</option>
+
+                </select>
+
+            </div>
+
+            <div class="box-desc-ocorrencia">
+
+                <div class="title-desc">Faça uma breve descrição do reporte:</div>
+
+                <input name="desc_ocorrencia" maxlength="120"  id="input_desc"
+                class="input-desc-ocorrencia" placeholder="Máximo de caracteres: 120">
+
+            </div>
+
+            <button class="but_registrar" id="btn_entrar">Registrar reporte</button>
+            
+        </form>
+
+        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+            Erro no cadastro
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
+
+
+<script>
+
+function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_registro));
+        fetch("/usuarios/registrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                alert(`O jogador ${input_nome.value} foi reportado com sucesso`);
+                input_nome.value = '';
+                tipo_reporte.value = '';
+                input_desc.value = '';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        div_erro.style.display='none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        div_erro.style.display='block';
+    }
+
+</script>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    
+    <title>Cadastro</title>
+    
+</head>
+
+<body>
+
+    <div class="box-navbar">
+
+        <div class="container-respiro">
+
+            <img src="img/img-home/league-friends.png" alt="">
+
+            <ul class="navbar">
+                <li><a href="index.html" class="n-choose">INICIO</a></li>
+                <li><a href="contato.html" class="n-choose">CONTATO</a></li>
+                <li><a href="cadastro.html" class="choose">CADASTRO</a></li>
+                <li><a href="login.html" class="n-choose">LOGIN</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="container-respiro-cadastro">
+
+        <div class="box-cadastro">
+
+            <div class="container-respiro-fields">
+
+                <div class="title-cadastro">Faça seu cadastro e venha se divertir</div>
+
+                    <form id="form_cadastro" method="post" class="field-bottom">
+
+                        <div class="field">
+                            Digite seu nickname do lol: <br>
+                            <input name="nick" id="nick" class="input" autofocus>
+                        </div>
+
+                        <div class="field">
+                            Digite seu email: <br>
+                            <input name="email" id="email" placeholder="Ex: xxxx@gmail.com" class="input" >
+                        </div>
+                
+                        
+                        <div class="field">
+                            Digite sua senha: <br>
+                            <input name="senha" id="senha" type="password" placeholder="****************" class="input"><br>
+                        </div>
+
+                        <img src="img/img-cadastro/loading.gif" class="loading" id="loading" alt="">    
+                        
+                        <div class="field">
+                            Confirme a senha: <br>
+                            <input type="password" id="senha_confirmed" placeholder="****************" class="input"><br>
+                        </div>
+                        
+                        <input name="rota" id="input_rota" style="display: none;">
+                        
+                        <div class="button">
+
+                            <button type="button" id="btn_entrar" class="button-cadastro" onclick="validar_campos()">
+
+                                Fazer Cadastro
+
+                            </button>
+
+                        </div>
+                    </form>
+
+                    
+                    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                        Erro no cadastro
+                    </div>
+                    
+                </div>
+                
+            <!-- <img src="img/img-cadastro/ez.png" alt=""> -->
+
+            <div class="box-change-routes">
+
+                <div class="box-top">
+
+                    <div class="title-change-routes">Selecione sua rota favorita:</div>
+                    <img src="img/img-cadastro/top-icon.png" alt="" onclick="topp()" id="top_lane">
+                    <img src="img/img-cadastro/jg-icon.png" alt="" onclick="jg()" id="jg_lane">
+
+                </div>
+
+                <div class="box-bot">
+
+                    <img src="img/img-cadastro/mid-icon.png" alt="" onclick="mid()" id="mid_lane">
+                    <img src="img/img-cadastro/bot-icon.png" alt="" onclick="adc()" id="adc_lane">
+                    
+                </div>
+
+                <img src="img/img-cadastro/sup-icon.png" alt="" onclick="sup()" id="sup_lane">
+                
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+
+    var set_backgroud = `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2))`;
+
+    var rotas = ['1', `2`,`3`, `4`, `5`];
+
+    function topp(){
+
+        top_lane.style.background = set_backgroud;
+        jg_lane.style.background = ``;
+        mid_lane.style.background = ``;
+        adc_lane.style.background = ``;
+        sup_lane.style.background = ``;
+
+        input_rota.value = rotas[0];
+    }
+
+    function mid(){
+
+        mid_lane.style.background = set_backgroud;
+        jg_lane.style.background = ``;
+        top_lane.style.background = ``;
+        adc_lane.style.background = ``;
+        sup_lane.style.background = ``;
+
+        input_rota.value = rotas[1];
+
+    }
+
+    function jg(){
+
+        jg_lane.style.background = set_backgroud;
+        top_lane.style.background = ``;
+        mid_lane.style.background = ``;
+        adc_lane.style.background = ``;
+        sup_lane.style.background = ``;
+
+        input_rota.value = rotas[2];
+
+    }
+
+    function adc(){
+
+        adc_lane.style.background = set_backgroud;
+        jg_lane.style.background = ``;
+        mid_lane.style.background = ``;
+        top_lane.style.background = ``;
+        sup_lane.style.background = ``;
+
+        input_rota.value = rotas[3];
+
+    }
+
+    function sup(){
+
+        sup_lane.style.background = set_backgroud;
+        jg_lane.style.background = ``;
+        mid_lane.style.background = ``;
+        adc_lane.style.background = ``;
+        top_lane.style.background = ``;
+
+        input_rota.value = rotas[4];
+
+    }
+
+    function validar_campos(){
+
+        // vereficando se há campos vazios
+        if( nick.value == '' || email.value == '' || senha.value == '' || senha_confirmed.value == '' 
+        || input_rota.value == ''){
+
+            return(alert('Preencha todos os campos'));
+
+        }else if( ((email.value).toUpperCase()).indexOf('@') <= '0' || 
+        ((email.value).toUpperCase()).indexOf('@') >= ((email.value).toUpperCase()).indexOf('.COM') ){
+
+            alert('Email inválido');
+
+        }else if( senha.value != senha_confirmed.value ){
+
+            return(alert('Senha e Confirmar senha não batem'));
+
+        }else{
+
+            cadastrar();
+
+        }
+    }
+
+    function cadastrar() {
+
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        loading.display = 'block';
+        div_erro.style.display='none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        loading.display = 'none';
+        div_erro.style.display='block';
+    }
+
+
+</script>

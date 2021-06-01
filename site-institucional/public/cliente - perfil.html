@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfil</title>
+
+    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" href="css/cliente-perfil.css">
+
+    <script type="text/javascript" src="javascript/validar_login.js"></script>
+
+</head>
+
+<body>
+
+    <div class="navigation">
+
+        <span class="logo"><img src="img/img-home/league-friends.png" alt=""></span>
+        
+        <ul>
+            <li>
+                <a href="cliente.html">
+                    <span class="icon"><img src="img/img-cliente/house.png" alt=""></span>
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <li class="choose">
+                <a href="cliente - perfil.html">
+                    <span class="icon"><img src="img/img-cliente/profile.png" alt=""></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a href="cliente-ocorrencias.html">
+                    <span class="icon"><img src="img/img-cliente/setting.png" alt=""></i></span>
+                    <span class="title">Reportar um jogador</span>
+                </a>
+            </li>
+            <li class="down">
+                <a onclick="logoff()">
+                    <span class="icon"><img src="img/img-cliente/log_out.png" alt=""></i></span>
+                    <span class="title" >Sair</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="toggle" onclick="toggleMenu()"></div>
+
+    <div class="container-respiro">
+        
+        <div class="box-perfil">
+
+            <div class="name_user" id="usuario_nome"></div>
+
+            <div id="box_info" class="box-info">
+
+                <div class="lane">
+
+                    <div class="text-for-lane">Rota Favorita:</div>
+                    
+                    <img src="" alt="" id="img_rota">
+                    
+                </div>
+
+                <div class="line"></div>
+
+                <div class="reports">
+
+                    <div class="text-for-reports">Ocorrências:</div>
+
+                    <div class="desc_ocorrencia"></div>
+
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+var image = document.getElementById('output');
+    
+    function toggleMenu(){
+
+        let navigation = document.querySelector('.navigation');
+        let toggle = document.querySelector('.toggle');
+
+        navigation.classList.toggle('active')
+        toggle.classList.toggle('active');
+    }
+
+    verificar_autenticacao();
+
+    </script> 
+
