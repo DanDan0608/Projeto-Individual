@@ -147,12 +147,15 @@ body{
 .card{
 
     width: 300px;
-    height: 400px;
+    height: 350px;
     background-color: rgba(2, 43, 228, 0.4);
     text-align: center;
-    border-radius: 100px;
     float: left;
     margin-left: 50px;
+
+    border-radius: 100px;
+    border: 2px solid blueviolet;
+    box-shadow: 10px 1px 25px 6px blueviolet
 
 }
 
@@ -168,12 +171,14 @@ body{
     font-size: 20px;
     color: #fffbd4;
     margin-top: 50px;
+    text-shadow: 2px 2px black;
+    padding: 0 5px;
 
 }
 
 .card .img-card1{
 
     height: 120px;
-    border-radius: 100px;
+    border-radius: 50px;
 
 }
